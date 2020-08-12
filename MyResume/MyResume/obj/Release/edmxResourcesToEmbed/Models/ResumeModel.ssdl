@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyResumeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'MyResume.dbo.Table_Debug' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Table_Debug">
+          <Property Name="message" Type="varchar" MaxLength="8000" />
+          <Property Name="creation_date" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyResume.dbo.Table_Language' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Table_Language">
+    <Key>
+      <PropertyRef Name="language_id" />
+      <PropertyRef Name="language_name" />
+      <PropertyRef Name="language_roman_name" />
+    </Key>
+    <Property Name="language_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="language_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="language_roman_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="last_updated_by" Type="int" />
+    <Property Name="last_update_date" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyResume.dbo.Table_Language_Assignation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Table_Language_Assignation">
+    <Key>
+      <PropertyRef Name="language_assignation_id" />
+      <PropertyRef Name="language_id" />
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="language_assignation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="language_id" Type="int" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="active" Type="varchar" MaxLength="1" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="last_updated_by" Type="int" />
+    <Property Name="last_update_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Table_User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="userEmail" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="userNationality" Type="nvarchar" MaxLength="100" />
+    <Property Name="userAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="userArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="userState" Type="nvarchar" MaxLength="100" />
+    <Property Name="userPostCode" Type="varchar" MaxLength="5" />
+    <Property Name="userMobile" Type="varchar" MaxLength="1000" />
+    <Property Name="userTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="userRomanName" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_by" Type="int" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="last_update_date" Type="datetime" />
+    <Property Name="last_updated_by" Type="datetime" />
+    <Property Name="user_end_date" Type="date" />
+  </EntityType>
+  <EntityContainer Name="MyResumeModelStoreContainer">
+    <EntitySet Name="Table_User" EntityType="Self.Table_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_Language" EntityType="Self.Table_Language" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Table_Language].[language_id] AS [language_id], 
+    [Table_Language].[language_name] AS [language_name], 
+    [Table_Language].[language_roman_name] AS [language_roman_name], 
+    [Table_Language].[created_by] AS [created_by], 
+    [Table_Language].[creation_date] AS [creation_date], 
+    [Table_Language].[last_updated_by] AS [last_updated_by], 
+    [Table_Language].[last_update_date] AS [last_update_date]
+    FROM [dbo].[Table_Language] AS [Table_Language]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Table_Language_Assignation" EntityType="Self.Table_Language_Assignation" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Table_Language_Assignation].[language_assignation_id] AS [language_assignation_id], 
+    [Table_Language_Assignation].[language_id] AS [language_id], 
+    [Table_Language_Assignation].[userid] AS [userid], 
+    [Table_Language_Assignation].[active] AS [active], 
+    [Table_Language_Assignation].[created_by] AS [created_by], 
+    [Table_Language_Assignation].[creation_date] AS [creation_date], 
+    [Table_Language_Assignation].[last_updated_by] AS [last_updated_by], 
+    [Table_Language_Assignation].[last_update_date] AS [last_update_date]
+    FROM [dbo].[Table_Language_Assignation] AS [Table_Language_Assignation]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

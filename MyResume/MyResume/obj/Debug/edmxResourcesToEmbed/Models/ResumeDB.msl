@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyResumeModelStoreContainer" CdmEntityContainer="MyResumeEntities">
+    <EntitySetMapping Name="VIEW_ACTIVE_COUNTRY">
+      <EntityTypeMapping TypeName="MyResumeModel.VIEW_ACTIVE_COUNTRY">
+        <MappingFragment StoreEntitySet="VIEW_ACTIVE_COUNTRY">
+          <ScalarProperty Name="lookupgroup_id" ColumnName="lookupgroup_id" />
+          <ScalarProperty Name="lookupgroup_name" ColumnName="lookupgroup_name" />
+          <ScalarProperty Name="lookupgroup_romanName" ColumnName="lookupgroup_romanName" />
+          <ScalarProperty Name="display_value" ColumnName="display_value" />
+          <ScalarProperty Name="actual_value" ColumnName="actual_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

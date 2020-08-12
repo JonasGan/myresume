@@ -1,0 +1,671 @@
+﻿@model MyResume.Models.Table_User
+    <html>
+    <head>
+        <title>User Details</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+            $(function () {
+                $('.pop').on('click', function () {
+                    $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+                    $('#imagemodal').modal('show');
+                });
+            });
+        </script>
+        <style>
+            .full-length-field{
+                width:1000px
+            }
+            .timeline {
+                list-style: none;
+                padding: 20px 0 20px;
+                position: relative;
+            }
+
+                .timeline:before {
+                    top: 0;
+                    bottom: 0;
+                    position: absolute;
+                    content: " ";
+                    width: 3px;
+                    background-color: #eeeeee;
+                    left: 50%;
+                    margin-left: -1.5px;
+                }
+
+                .timeline > li {
+                    margin-bottom: 20px;
+                    position: relative;
+                }
+
+                    .timeline > li:before,
+                    .timeline > li:after {
+                        content: " ";
+                        display: table;
+                    }
+
+                    .timeline > li:after {
+                        clear: both;
+                    }
+
+                    .timeline > li:before,
+                    .timeline > li:after {
+                        content: " ";
+                        display: table;
+                    }
+
+                    .timeline > li:after {
+                        clear: both;
+                    }
+
+                    .timeline > li > .timeline-panel {
+                        width: 50%;
+                        float: left;
+                        border: 1px solid #d4d4d4;
+                        border-radius: 2px;
+                        padding: 20px;
+                        position: relative;
+                        -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+                    }
+
+                    .timeline > li.timeline-inverted + li:not(.timeline-inverted),
+                    .timeline > li:not(.timeline-inverted) + li.timeline-inverted {
+                        margin-top: -60px;
+                    }
+
+                    .timeline > li:not(.timeline-inverted) {
+                        padding-right: 90px;
+                    }
+
+                    .timeline > li.timeline-inverted {
+                        padding-left: 90px;
+                    }
+
+                    .timeline > li > .timeline-panel:before {
+                        position: absolute;
+                        top: 26px;
+                        right: -15px;
+                        display: inline-block;
+                        border-top: 15px solid transparent;
+                        border-left: 15px solid #ccc;
+                        border-right: 0 solid #ccc;
+                        border-bottom: 15px solid transparent;
+                        content: " ";
+                    }
+
+                    .timeline > li > .timeline-panel:after {
+                        position: absolute;
+                        top: 27px;
+                        right: -14px;
+                        display: inline-block;
+                        border-top: 14px solid transparent;
+                        border-left: 14px solid #fff;
+                        border-right: 0 solid #fff;
+                        border-bottom: 14px solid transparent;
+                        content: " ";
+                    }
+
+                    .timeline > li > .timeline-badge {
+                        color: #fff;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        font-size: 1.4em;
+                        text-align: center;
+                        position: absolute;
+                        top: 16px;
+                        left: 50%;
+                        margin-left: -25px;
+                        background-color: #999999;
+                        z-index: 100;
+                        border-top-right-radius: 50%;
+                        border-top-left-radius: 50%;
+                        border-bottom-right-radius: 50%;
+                        border-bottom-left-radius: 50%;
+                    }
+
+                    .timeline > li.timeline-inverted > .timeline-panel {
+                        float: right;
+                    }
+
+                        .timeline > li.timeline-inverted > .timeline-panel:before {
+                            border-left-width: 0;
+                            border-right-width: 15px;
+                            left: -15px;
+                            right: auto;
+                        }
+
+                        .timeline > li.timeline-inverted > .timeline-panel:after {
+                            border-left-width: 0;
+                            border-right-width: 14px;
+                            left: -14px;
+                            right: auto;
+                        }
+
+            .timeline-badge.primary {
+                background-color: #2e6da4 !important;
+            }
+
+            .timeline-badge.success {
+                background-color: #3f903f !important;
+            }
+
+            .timeline-badge.warning {
+                background-color: #f0ad4e !important;
+            }
+
+            .timeline-badge.danger {
+                background-color: #d9534f !important;
+            }
+
+            .timeline-badge.info {
+                background-color: #5bc0de !important;
+            }
+
+            .timeline-title {
+                margin-top: 0;
+                color: inherit;
+            }
+
+            .timeline-body > p,
+            .timeline-body > ul {
+                margin-bottom: 0;
+            }
+
+                .timeline-body > p + p {
+                    margin-top: 5px;
+                }
+        </style>
+    </head>
+    <body>
+        <br />
+        <br />
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+            </script>
+        }
+        <!------------------------Personal Information Section--------------------------------------------------->
+        @using (Html.BeginForm("UpdateUser", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                <div class="page-header">
+                    <h1 id="timeline">Personal Information / 個人資料</h1>
+                </div>
+                <table>
+                    <tr>
+                        <td width="30%" style="vertical-align:text-top">
+                            <table>
+                                <tr>
+                                    <td width="30%">
+                                        <img width="250" class="img-responsive" src="https://lh3.googleusercontent.com/Oy6EvFTgx6MxtTGTxeEYj7MiFBB5asAY0QcNRY-94ahVFBOPLbAoXIYQJqpjPn__OtCmtEC_KIFgcc6afrMzMIuJoVG94fj-5dXWr01Yxbs0rEpKEvqmusukRtTun_IImU_dsg1tTphpHHD3Tjw15wngsoHsdDrYQFdpQI7net2G-GOgmej6bHMcPcf0Z3ORASAtg7JXkO87scRnKgghNeiYMJk2p0XVeWLkBMgKAApj19MUM5sa6pNB5Aj_kKyrAO5cuvnIRDy7bs-jlYGYHo85xZYssM9RnkEjBZ-ZZkGkN-BNSRcOUhdVrdqzvFoQBtRJOzqIngtKB-4edrH_WuyZh9Jv5ggUrNJsUNsbwuNFEmhGYEEMswYvBZhw_Vi-QLLYyMoW_ClD0-pCIpzOJmyLEfgqhPRWceB8b5G84f1XMju_w75-u9NM9b_78UOWqQnVl-fJJQogjzEQIVd7pRxiI9vgSU8yEVqwOfK1872XZtwtX-jQXWQsdhzkrsYnFxvRCCqRkxk179N1kguPZzvCmcSRwa4KVQx09TGnoa5d4YA-qPIFMdTrgBkUo2QTaz29FbLbXmOc2pIt1VZ-FTOI0cQGLtnIINTnCmphDGq8spxrwLCPBZMyxR8PfgqJwZ0e8lAV0RwPPnBIjHzyzh7B7wekLRX-q5m46eQkAZRqjAUar0vpO6Tqgp9JrA=s1078-no?authuser=0" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group input-group-prepend">
+                                            @Html.LabelFor(m => m.userName)
+                                            @Html.EditorFor(m => m.userName, new { htmlAttributes = new { @class = "form-control input-group-text" } })
+                                            @Html.ValidationMessageFor(m => m.userName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userRomanName)
+                                            @Html.EditorFor(m => m.userRomanName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userRomanName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userTitle)
+                                            @Html.EditorFor(m => m.userTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userMobile)
+                                            @Html.EditorFor(m => m.userMobile, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userMobile, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userEmail)
+                                            @Html.EditorFor(m => m.userEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userEmail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userNationality)
+                                            @Html.EditorFor(m => m.userNationality, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userNationality, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userAddress)
+                                            @Html.EditorFor(m => m.userAddress, new { htmlAttributes = new { @class = "form-control full-length-field" } })
+                                            @Html.ValidationMessageFor(m => m.userAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userArea)
+                                            @Html.EditorFor(m => m.userArea, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userArea, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userState)
+                                            @Html.EditorFor(m => m.userState, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userState, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.userPostCode)
+                                            @Html.EditorFor(m => m.userPostCode, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(m => m.userPostCode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="col-12 text-left mt-3">
+                                            @Html.HiddenFor(m => m.userid)
+                                            @Html.HiddenFor(m => m.last_updated_by)
+                                            @Html.HiddenFor(m => m.last_update_date)
+                                            @Html.HiddenFor(m => m.created_by)
+                                            @Html.HiddenFor(m => m.creation_date)
+                                            @Html.HiddenFor(m => m.user_end_date)
+                                            <input type="submit" id="submitBtn" class="btn btn-primary btn-lg btn-block" value="Update/更新" />
+
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <div class="container">
+                                <div class="page-header">
+                                    <h1 id="timeline">Milestones / 里程碑</h1>
+                                </div>
+                                <ul class="timeline">
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-cloud"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Oracle to Cloud (Salesforce)/ Oracle到雲端（Salesforce）</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2020 - Current</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    協助NI開始把業務管理轉移到雲端上，<a href="https://zh.wikipedia.org/zh-my/Salesforce.com">Salesforce</a>
+                                                    <br />
+                                                    <b>使用技術</b>
+                                                    <ul>
+                                                        <li>Salesforce</li>
+                                                    </ul>
+                                                </p>
+                                                <br />
+                                                <p>
+                                                    Assist NI to bring the business process to cloud, <a href="https://en.wikipedia.org/wiki/Salesforce">Salesforce</a>
+                                                    <br />
+                                                    <b>Programming Language Used</b>
+                                                    <ul>
+                                                        <li>Salesforce</li>
+                                                    </ul>
+                                                </p>
+                                                <a href="#" class="pop">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/zh/0/0a/Salesforce_logo.png" class="img-responsive" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="timeline-badge"><i class="glyphicon glyphicon-education"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Scrum Master Training In London / 敏捷大師培訓</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> November 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>出差英國倫敦出席一個為期三天敏捷開發的培訓課程。該課程的講師是敏捷開發的創始人 <a href="https://en.wikipedia.org/wiki/Mike_Cohn">Mike Cohn</a>。培訓結束之後我還在當地逗留了數天，參觀了英國著名的景點，例如巨石陣，大英博物館等</p>
+                                                <br />
+                                                <p>Travelled to London, English for the Software Development Using Scrum training. The trainer is <a href="https://en.wikipedia.org/wiki/Mike_Cohn">Mike Cohn</a>, the founder of Scrum software development method. I decided to stay in London for additional few days and visited the well-known location in English, such as Stone Age, The British Museum and etc.</p>
+                                                <br />
+                                                <a href="#" class="pop">
+                                                    <img class="img-responsive" title="課程的教材/The materials of training" style="width:400px; align-content:center" src="https://lh3.googleusercontent.com/9HDEsq_SMNz74dmUMudhLSYWmpmpDUn5gvW0JIEjd1uwOoGm7eON19V3YFsM5XcfoTwJwquFo_XDQcSlroYk0uVVnrDMVKuBQiWXk5QmKwp27PqmsKYDKEjIHo8AihhSa6x-7bLzoJNHmP8bVFvavEn-Hw-FuVE64EeNZoSmfD18puZiJ0TD0Uj343-j8pw0RMX5Io5czr9TkG8dAC53bU2DOqetH_VFQS7DxYXX8f0PAbK_X3YIP2ohVUtTvAhw3y3e0pWzs8tNs60gBlT6wAglmJtSoHJvXwhT_9U5juK2HatQOkjys1jBcfAx3WOhXTZzwBJlcKVBxbKAG79r0mCGF4udu4SQpZGwbIUgO8lX4DPwT6oorP1Q3OlY6aSNvgrGqmGnYZaGTr64cNsLZ_xmKZ90JigaM7HURhMbV1W1PDONuo4E-kFCoY2C9vQmazeqo5FizoRz9H6ejamwsXC1jswWSMh4kGALrQBL6ApHHZMrX_5jCdvABkkZUr3brDtnFsBedgT74XsucfDHrLbV7WZloTXXMgS9AWN71mjgKnOWvy7hTtnDNgzyw9SZyMSk0_c5l0wnO56dkclz9Kmu3YDIIyY2HHpUrvuGavpA36XTjGtPJQ0xGkJYoMFvKdB6sIvS5mH39P_lEZwpzR8lym8wgmdgS2tfeGf3UW8Vu433QnFwh1TjTy2a0A=w978-h1303-no?authuser=0" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-object-align-bottom"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Architecture Owner / 結構設計師</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> October 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>被委派成團隊中的<a href="https://www.projectmanagement.com/blog-post/61701/The-DAD-Role-of-Architecture-Owner">結構設計師</a>，主要任務是建議，審核並加强NI系統的設計結構。</p>
+                                                <br />
+                                                <p>Taking the role of the <a href="https://www.projectmanagement.com/blog-post/61701/The-DAD-Role-of-Architecture-Owner">Architecture Owner</a> of the team to propose, review and enhancement the architecture structure of the system in NI.</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-arrow-up"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Promoted to Staff Programmer Analyst/ 升職成為資深程式員</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>October 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>在實力和態度的證明上，并且成功協助NI上綫了幾項項目，我被升職成為資深程式員，同時有多了更多的責任，例如協助經理管理資歷較淺的程式員（包括檳城地區以外的程式員），協助檳城IT部門的進步，成為IT部門的負責人（Go-To-Person），參與企業項目並提供技術上的意見等</p>
+                                                <br />
+                                                <p>
+                                                    From ability and attiture pespestive proven, and assist NI to go-live in enterprise-level projects, I have been promoted to staff programmer analyst and more responsibilities assigned to me. For example, assist team manager to manage the junior programmer analyst(in all regions),
+                                                    assist the technical improvement of IT department, be the go-to-person of IT department when business has any issues/ questions, participate in enterprise-level project to give technical recommendation during project planning and etc.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline">
+                                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Technology Forum / 科技論壇</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> October 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>數位技術小組的成員舉辦了一個科技論壇並邀請了檳城的IT部門共同出席。該論壇最主要的目的是給予資深員工和大家分享在NI工作的想法和在NI工作多年的心得</p>
+                                                <br />
+                                                <p>Few members of a technical group organized a technical forum and invited the folks of IT Penang. The objectives of the event is to provide an opportunity to the seniors/ pioneers to share their thought and feeling at NI</p>
+                                            </div>
+                                            <br />
+                                            <a href="#" class="pop">
+                                                <img class="img-responsive" title="技術小組的所有成員/Members of technical group" src="https://lh3.googleusercontent.com/1YmPGWtyqtEyEhX_J_2tT6o88AimSojYi0oCEHwC5cyb2PWNiPHIUW7Dlhqn6RUibJWEasGcmmeZA-7_ZyJX0OVajqGLLju27wQysRjTycMGoetLLTGq9zpuVtMmPR8ztCtSr8NZuvnx8UUXdlkrMkimcrmFr-pxQvs2XcW6ztZSbhaTWDAJU-i8AxI6qmWA4TKmx8lDP4YHEph1NLlB37jW9pK-_7uVaPScup6VFgFp3dAzfAxBYeK_ZfFEruMSMrMnSax91LHa8980FDjNa3ys-F7A4XUMZmQ3mkQQz4ke9pQ9TTaXfUUTIaNciPbPJXMoOQJQHfp-r2qP8pukUjAdArPKXL-D3pkH8uqaCOMjF2nMFQBNwjQppGibXJWI1gpMBHKdOBerMbat4Pvxt34iMMjTM8ZN-9_dyBlF2_2YfULmFKGjTh3cB6xJf244ipzvD5AX39IAqd_mHzS1kmJX43iFCoR-A9v4rwe-ihFoamt5F-uCg5XhAXGwSDt1ku1CahgILKeBctMhAgxzeRryHzM8oF16pjLImojMKMVRfwcvRLVYx7y13rtFual42Ut-unnP6yKD-q1NZsApMEpzv8pKUBKWfbXsPXs1lWPWIkUTKRut_GbY_O7E0g7jK7WSa7a5TzN_zuIu9TH7Ka8XCDOuhM2Mh3kRAzqVHCcqVkNodl9_SD7bgCMHZw=w1080-h720-no?authuser=0" />
+                                            </a>
+                                            <br />
+                                            <a href="#" class="pop">
+                                                <img class="img-responsive" title="檳城的IT部門/The employees of NI Penang" src="https://lh3.googleusercontent.com/4wdZK4wHdf7m3BSVBOE2QEHwgpBqnbzavlixLI4I7FuyJzWWwpKCMMSIGyJqgcryRFG3IDqzNP2VqDwQW8ndHZf4BZ1K6zoiNPw5YgaVKhe0hQNtUsH02hFqGbquiQYBL-cDV2sLUTpnhvlWX0TfkLwDWKiQk6hzo8oeRXKwoWVAFCk00L9wp0s2mvcgNYS7dKj7VQG7gw9lUmEsBRA-89Y6uMbnh1ns4LuT4ox8KbzY3NRvTnFIdzEE470-23Sgpx3N7bFndX9qyCs71k9Vm-TsPFCL_x4LmBnXFjMPnUZWaMYgmdF-uwajuZk2WnkpTKj9mikRxa0v-WdAqd7zkoq6lcz-IT--hGk8I-q-53jjxZ5dqGdfZWIHCiZcYz8BUzaF73QyVZp4hy5JjOL1pVrfh9Dy_dCvVs412Q3Q2hDqJxiWoLDhmZmJSKxh8rfRUK_JbO67T2KXVF_ishcgxwkncoTGPrd8zbGN4ToShRJZxQip10WZ8pxQZacYyTWsMPI6Ts4fZVkSWbu4BpR9duADGf_2c81E-7LD8ILiN_GMCbMergeSNjhKuwiVkxrid5B34Vc1oSQXHvmAfSuk0ume36PvGETkfARcAaeKA9WPKvLh9WXgx7252HzkY8pIZoyKS0LRE7jjTqeUdQUO5TmBbH77-hq2BIRT_oKK4toNvywYNB8lC_M_kDRdWQ=w1454-h969-no?authuser=0" />
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Enterprise Agreement Project Went Live/ 企業協議項目正式上綫</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> April 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    <a href="https://www.ni.com/zh-tw/support/documentation/supplemental/16/ni-software-platform-bundles-for-enterprise-agreements.html">企劃協議</a>是NI的其中一個產品許可證。該許可證允許客戶公司的多個内部員工可以同時使用NI的產品，節省客戶的開銷，同時增加了某產品的使用量并且帶給本公司更多的商業機會。
+                                                    <br />
+                                                    <b>使用技術</b>
+                                                    <ul>
+                                                        <li>Oracle PLSQL</li>
+                                                        <li>SQL</li>
+                                                    </ul>
+                                                </p>
+                                                <br />
+                                                <p>
+                                                    <a href="https://www.ni.com/en-us/support/documentation/supplemental/16/ni-software-platform-bundles-for-enterprise-agreements.html">Enterprise Agreement</a> in a kind of license type being sold to customers. With this license, a number of users are licensed with the software product of NI. This is cost caving for the customer, and more opporpunity for National Instruments.
+                                                    <br />
+                                                    <b>Programming Language Used</b>
+                                                    <ul>
+                                                        <li>Oracle PLSQL</li>
+                                                        <li>SQL</li>
+                                                    </ul>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-tree-deciduous"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Historical Installed Base Interface Correction / 安装基础數據維護項目上綫</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> April 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    <a href="https://docs.oracle.com/cd/E18727_01/doc.121/e13089/T417182T417187.htm#:~:text=Oracle%20Install%20Base%20is%20a,of%20Oracle%20Install%20Base%20configurations.">
+                                                        Installed Base， IB
+                                                    </a> (翻譯：安装基础)，是非常重要的產品售後服務數據。NI需要這龐大的數據來追蹤已售賣的產品並瞭解該客戶所購買/擁有的許可證，從而了解應該提供什麽服務給該客戶。在這項目之前，IB的數據并不完善且不準確，所以NI集結了來自不同地區（美國、匈牙利、馬來西亞）並了解IB的程式員共同開發一個程式來確保NI擁有可靠的IB數據。
+                                                    <br />
+                                                    <b>使用技術</b>
+                                                    <ul>
+                                                        <li>Oracle PLSQL</li>
+                                                        <li>SQL</li>
+                                                        <li>HTML</li>
+                                                        <li>Oracle APEX</li>
+                                                    </ul>
+                                                </p>
+                                                <p>
+                                                    <br />
+                                                    <a href="https://docs.oracle.com/cd/E18727_01/doc.121/e13089/T417182T417187.htm#:~:text=Oracle%20Install%20Base%20is%20a,of%20Oracle%20Install%20Base%20configurations.">
+                                                        Installed Base， IB
+                                                    </a>, is the critical post-sales data after the products sold to the customers. NI needs this huge amount of data to understand what services have been purchased by the customer and hence, know what kind of service should be provided to the customer.
+                                                    Before this project, IB data is not complete and not reliable. Therefore, NI founded a project team that involved the programmers around the world (US, Hungary, Malaysia) who understand about IB to create a program to maintain the data quality of IB
+                                                    <br />
+                                                    <b>Programming Language Used</b>
+                                                    <ul>
+                                                        <li>Oracle PLSQL</li>
+                                                        <li>SQL</li>
+                                                        <li>HTML</li>
+                                                        <li>Oracle APEX</li>
+                                                    </ul>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge danger"><i class="glyphicon glyphicon glyphicon-film"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">NI Penang 10th Anniversary Video / NI 檳城十周年影片</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> April 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    <br />
+                                                    在NI檳城的十周年紀念日，NI召集了數位對影片創作感興趣的員工參與紀錄片的製作。我負責的是影片策劃、錄影、錄音、特效及後期制作。這雖然已經超出的我的工作範圍，可是我個人卻非常的享受這涉及不同的知識和領域
+                                                    <br />
+                                                    <b>使用技術</b>
+                                                    <ul>
+                                                        <li>Adobe Premiere Pro</li>
+                                                        <li>Adobe After Effect</li>
+                                                        <li>錄影及錄音</li>
+                                                    </ul>
+                                                </p>
+                                                <p>
+                                                    <br />
+                                                    In the 10th year anniversary of NI Penang, NI invited a number of people to involve in the production. My responsibilities were planning, video filming, sound recording, video effect and post editing. Although this is out of my responsibility as a programmer, but I am enjoy to learn something new
+                                                    <br />
+                                                    <b>Technologies/Tools Used</b>
+                                                    <ul>
+                                                        <li>Adobe Premiere Pro</li>
+                                                        <li>Adobe After Effect</li>
+                                                        <li>Video Filming and Recording</li>
+                                                    </ul>
+                                                </p>
+                                                <br />
+                                                <iframe class="img-responsive" width="560" height="515" src="https://www.youtube.com/embed/R6of2KKbw3g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="timeline-badge warning"><i class="glyphicon glyphicon-education"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Training in Hungrary / 匈牙利培訓</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> April 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    <br />
+                                                    出差到匈牙利接受Oracle的培訓并且開始接觸全新的編碼語言的開發。在此趟的培訓我接受了技術上（Oracle技術）、系統上（NI如何使用Oracle系統）和業務上（NI的商業系統，例如<a href="https://zh.wikipedia.org/zh-my/%E4%BB%8E%E8%AE%A2%E5%8D%95%E5%88%B0%E6%94%B6%E6%AC%BE">訂單到收款</a>）的培訓。
+                                                    <br />
+                                                </p>
+                                                <p>
+                                                    <br />
+                                                    Travelled to Hungary to attending the Oracle training and start to involve in Oracle Technology Development. In this training, I learnt about the Technical Training (Oracle Technology), Oracle System (How NI uses the Oracle System) and Business Process (How NI runs business, for example <a href="https://support.oracle.com/knowledge/Oracle%20E-Business%20Suite/985504_1.html#:~:text=The%20Order%20to%20Cash%20flow,for%20the%20good(s).">O2C</a>).
+                                                    <br />
+                                                </p>
+                                                <br />
+                                                <a href="#" class="pop">
+                                                    <img class="img-responsive" src="https://lh3.googleusercontent.com/io-ivy8s8ac8Bp7kav0SRgxEE5fpNegz1eZskPILKcW3ccrocRLMbYRba0lzNWW-s26cOvC6ECFTgNoxDsrQE_wfuLrjIyC4tolQg2W4ckDzmn4yux53wo_jzQv65W_ZZhZh8g-T0ufm_9cbzfFtTNIUz980UPaaUkZ8awbjAEEt_EbprfvfQgbyN2QH_WmiinEKhQJlNSj0FU1isOmlxEDFxAdrVHEYXxOX31bb6fGNLMbJbjWhO4zhNzBHaCgdeUiu79v9u3iCyanhhkvXHbAercBr6lcA-VeNSdNGha0iX42kb8mtxt33RcvXXYDDaSFUbtyiKTdWHpDZGK2fzh-jNmQBmxY7ym2hVs2PY7okdIn1BL9KdbnThMuLxxbq5qeiplyQ17786TJUIvXMbLELxYYfYpmMAUfwJIrbAVVuNuesswDdi1EExHUOQpWFoeHa64SB6OcX7fA_PPj7WOChdW6-FV6iJoyNlPLJKPPXU0qvGQkMOkeYJskB5YHD7R69dAc0WNH2_iCtivcpozcSKRkd3djiD_HmWyAFGy62vSlJMpibcRyyaZqNzoMn51XbT5mwCuXDtOqWoKBHXbSUcSMRAoRp1tzdhnq8mhM_oHjIRG5QkAzmfGOn7jWWtQh1W67PD2dUbrGOlzwapuCDXXadJESypZYX82I3wMknAqlBcseskhKvLhMUmQ=w1738-h1303-no?authuser=0" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-inverted">
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-refresh"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">OLiTE to Oracle/ OLiTE系統到Oracle系統</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2018 - 2019</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>
+                                                    <br />
+                                                    在這之前，NI有兩個主要的系統支持業務上的流程。OLiTE (編碼語言是ASP.NET)主要支持的是NI在亞洲地區的業務而Oracle支持亞洲地區以外的業務。由於業務量越來越大，NI決定把OLiTE的所有程式和數據遷移到Oracle伺服器。
+                                                    <br />
+                                                    <b>使用技術</b>
+                                                    <ul>
+                                                        <li>ASP.NET (Web Application, MVC), C#</li>
+                                                        <li>Microsoft SQL Server</li>
+                                                        <li>Crystal Report</li>
+                                                        <li>XML Publisher</li>
+                                                    </ul>
+                                                </p>
+                                                <p>
+                                                    <br />
+                                                    In the past, NI has two main systems to support the business process. OLiTE (written in ASP.NET) mainly to support the business in Asia where Oracle is for the region out of Asia. Due to the increase of the business volume, NI has decided to migrate all the programs and data to Oracle server
+                                                    <br />
+                                                    <b>Technologies/Tools Used</b>
+                                                    <ul>
+                                                        <li>ASP.NET (Web Application, MVC), C#</li>
+                                                        <li>Microsoft SQL Server</li>
+                                                        <li>Crystal Report</li>
+                                                        <li>XML Publisher</li>
+                                                    </ul>
+                                                </p>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-arrow-up"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Promoted to Programmer Analyst 2/ 升職到程式員二</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>May 2017</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>又再經過一年在實力和態度上的證明後，公司再把我往上升一個級別並同時多了幾個責任，例如成為資歷較淺程式員的導師</p>
+                                                <br />
+                                                <p>After my attitude and ability proven, NI promoted me to another level and more responsibilites assigned to me, for example be the mentor of the new comings</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-arrow-up"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Promoted to Programmer Analyst 1/ 升職到程式員一</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>October 2016</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>在經過一年的努力在態度上的證明後，公司把我往上升一個級別</p>
+                                                <br />
+                                                <p>After completed the internship, I joined NI as the Entry Programmer Analyst, mainly to maintain and complete the development of OLiTE (system written in ASP.NET)</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-badge success"><i class="glyphicon glyphicon-plus-sign"></i></div>
+                                        <div class="timeline-panel">
+                                            <div class="timeline-heading">
+                                                <h4 class="timeline-title">Joined NI/ 在NI就職</h4>
+                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 28 September 2015</small></p>
+                                            </div>
+                                            <div class="timeline-body">
+                                                <p>大學實習結束后，我正式加入NI成為公司的入門程式員，只要是做OLiTE（編碼語言是ASP.NET）系統的維護及開發</p>
+                                                <br />
+                                                <p>After completed the internship, I joined NI as the Entry Programmer Analyst, mainly to maintain and complete the development of OLiTE (system written in ASP.NET)</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        }
+        <!------------------------Employment History/ Milestones Section--------------------------------------------------->
+
+
+        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" data-dismiss="modal">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <img src="" class="imagepreview" style="width: 100%;">
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-12">
+                            <p class="text-left"></p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>

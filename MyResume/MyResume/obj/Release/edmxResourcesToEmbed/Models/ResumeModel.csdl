@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyResumeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Table_User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userNationality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userPostCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="userMobile" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="userTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userRomanName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="last_update_date" Type="DateTime" Precision="3" />
+    <Property Name="last_updated_by" Type="DateTime" Precision="3" />
+    <Property Name="user_end_date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Table_Language">
+    <Key>
+      <PropertyRef Name="language_id" />
+      <PropertyRef Name="language_name" />
+      <PropertyRef Name="language_roman_name" />
+    </Key>
+    <Property Name="language_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="language_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="language_roman_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="last_updated_by" Type="Int32" />
+    <Property Name="last_update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Table_Language_Assignation">
+    <Key>
+      <PropertyRef Name="language_assignation_id" />
+      <PropertyRef Name="language_id" />
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="language_assignation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="language_id" Type="Int32" Nullable="false" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="created_by" Type="Int32" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="last_updated_by" Type="Int32" />
+    <Property Name="last_update_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Table_User" EntityType="Self.Table_User" />
+    <EntitySet Name="Table_Language" EntityType="Self.Table_Language" />
+    <EntitySet Name="Table_Language_Assignation" EntityType="Self.Table_Language_Assignation" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyResumeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MyResume.dbo.VIEW_ACTIVE_COUNTRY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VIEW_ACTIVE_COUNTRY">
+    <Key>
+      <PropertyRef Name="lookupgroup_id" />
+    </Key>
+    <Property Name="lookupgroup_id" Type="int" Nullable="false" />
+    <Property Name="lookupgroup_name" Type="nvarchar" MaxLength="1000" />
+    <Property Name="lookupgroup_romanName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="display_value" Type="nvarchar" MaxLength="100" />
+    <Property Name="actual_value" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityContainer Name="MyResumeModelStoreContainer">
+    <EntitySet Name="VIEW_ACTIVE_COUNTRY" EntityType="Self.VIEW_ACTIVE_COUNTRY" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VIEW_ACTIVE_COUNTRY].[lookupgroup_id] AS [lookupgroup_id], 
+    [VIEW_ACTIVE_COUNTRY].[lookupgroup_name] AS [lookupgroup_name], 
+    [VIEW_ACTIVE_COUNTRY].[lookupgroup_romanName] AS [lookupgroup_romanName], 
+    [VIEW_ACTIVE_COUNTRY].[display_value] AS [display_value], 
+    [VIEW_ACTIVE_COUNTRY].[actual_value] AS [actual_value]
+    FROM [dbo].[VIEW_ACTIVE_COUNTRY] AS [VIEW_ACTIVE_COUNTRY]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyResumeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="VIEW_ACTIVE_COUNTRY">
+    <Key>
+      <PropertyRef Name="lookupgroup_id" />
+    </Key>
+    <Property Name="lookupgroup_id" Type="Int32" Nullable="false" />
+    <Property Name="lookupgroup_name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="lookupgroup_romanName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="display_value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="actual_value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="MyResumeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VIEW_ACTIVE_COUNTRY" EntityType="Self.VIEW_ACTIVE_COUNTRY" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyResumeModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Table_User">
+      <EntityTypeMapping TypeName="MyResumeModel.Table_User">
+        <MappingFragment StoreEntitySet="Table_User">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userNationality" ColumnName="userNationality" />
+          <ScalarProperty Name="userAddress" ColumnName="userAddress" />
+          <ScalarProperty Name="userArea" ColumnName="userArea" />
+          <ScalarProperty Name="userState" ColumnName="userState" />
+          <ScalarProperty Name="userPostCode" ColumnName="userPostCode" />
+          <ScalarProperty Name="userMobile" ColumnName="userMobile" />
+          <ScalarProperty Name="userTitle" ColumnName="userTitle" />
+          <ScalarProperty Name="userRomanName" ColumnName="userRomanName" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="last_update_date" ColumnName="last_update_date" />
+          <ScalarProperty Name="last_updated_by" ColumnName="last_updated_by" />
+          <ScalarProperty Name="user_end_date" ColumnName="user_end_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Language">
+      <EntityTypeMapping TypeName="MyResumeModel.Table_Language">
+        <MappingFragment StoreEntitySet="Table_Language">
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="language_name" ColumnName="language_name" />
+          <ScalarProperty Name="language_roman_name" ColumnName="language_roman_name" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="last_updated_by" ColumnName="last_updated_by" />
+          <ScalarProperty Name="last_update_date" ColumnName="last_update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Language_Assignation">
+      <EntityTypeMapping TypeName="MyResumeModel.Table_Language_Assignation">
+        <MappingFragment StoreEntitySet="Table_Language_Assignation">
+          <ScalarProperty Name="language_assignation_id" ColumnName="language_assignation_id" />
+          <ScalarProperty Name="language_id" ColumnName="language_id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="last_updated_by" ColumnName="last_updated_by" />
+          <ScalarProperty Name="last_update_date" ColumnName="last_update_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
